@@ -16,6 +16,17 @@ fn main() {
 ```
 
 
+fn main() {
+    let s: &str = "hello, world";
+    println!("Success!");
+ }
+
+
+ &str
+
+
+
+
 2. 🌟🌟 We can only use `str` by boxed it, `&` can be used to convert `Box<str>` to `&str` 
 
 ```rust,editable
@@ -30,6 +41,20 @@ fn greetings(s: &str) {
     println!("{}",s)
 }
 ```
+fn main() {
+    let s: Box<str> = "hello, world".into();
+    greetings(&s)
+ }
+ 
+ fn greetings(s: &str) {
+     println!("{}",s)
+ }
+
+&s
+
+
+
+
 
 ### String
 `String` type is defined in std and stored as a vector of bytes (Vec<u8>), but guaranteed to always be a valid UTF-8 sequence. String is heap allocated, growable and not null terminated.
@@ -49,6 +74,18 @@ fn main() {
 }
 ```
 
+fn main() {
+    let mut s = String::new();
+    s.push_str("hello, world");
+    s.push('!');
+ 
+    assert_eq!(s, "hello, world!");
+    println!("Success!");
+ }
+
+
+
+
 4. 🌟🌟🌟
 ```rust,editable
 
@@ -62,6 +99,18 @@ fn main() {
     println!("{}", s);
 }
 ```
+
+fn main() {
+    let mut s = String::from("hello");
+     s.push(',');
+     s.push_str(" world");
+     s += "!";
+ 
+     println!("{}", s)
+ }
+
+ push_str
+
 
 5. 🌟🌟 `replace` can be used to replace substring
 ```rust,editable
@@ -78,6 +127,17 @@ fn main() {
 }
 ```
 
+fn main() {
+    let s = String::from("I like dogs");
+    
+    let s1 = s.replace("dogs", "cats");
+ 
+    assert_eq!(s1, "I like cats");
+     println!("Success!");
+ }
+
+
+
 More `String` methods can be found under [String](https://doc.rust-lang.org/std/string/struct.String.html) module.
 
 6. 🌟🌟 You can only concat a `String` with `&str`, and `String`'s ownership can be moved to another variable.
@@ -93,6 +153,18 @@ fn main() {
     println!("{}",s1);
 }
 ```
+
+
+fn main() {
+    let s1 = String::from("hello,");
+    let s2 = String::from("world!");
+    let s3 = &s1 + &s2; 
+    assert_eq!(s3,"hello,world!");
+    println!("{}",s1);
+}
+
+
+
 
 ### &str and String
 Opsite to the seldom using of `str`, `&str` and `String` are used everywhere!
@@ -111,6 +183,23 @@ fn greetings(s: String) {
 }
 ```
 
+
+fn main() {
+    let s = "hello, world".to_string();
+    greetings(s)
+}
+
+fn greetings(s: String) {
+    println!("{}",s)
+}
+
+
+
+to_str method
+
+
+
+
 8. 🌟🌟 We can use `String::from` or `to_string` to convert a `&str` to `String`
 
 ```rust,editable
@@ -123,6 +212,16 @@ fn main() {
     println!("Success!");
 }
 ```
+
+
+fn main() {
+    let s = "hello, world".to_string();
+    let s1: &str = &s;
+    println!("Success!");
+}
+
+////&s
+
 
 ### String escapes
 9. 🌟 
@@ -147,6 +246,31 @@ fn main() {
     println!("{}", long_string);
 }
 ```
+
+
+fn main() {
+    // You can use escapes to write bytes by their hexadecimal values
+    // fill the blank below to show "I'm writing Rust"
+    let byte_escape = "I'm writing Ru\x73\x74!";
+    println!("What are you doing\x3F (\\x3F means ?) {}", byte_escape);
+
+    // ...or Unicode code points.
+    let unicode_codepoint = "\u{211D}";
+    let character_name = "\"DOUBLE-STRUCK CAPITAL R\"";
+
+    println!("Unicode character {} (U+211D) is called {}",
+                unicode_codepoint, character_name );
+
+   let long_string = "String literals
+                        can span multiple lines.
+                        The linebreak and indentation here \
+                         can be escaped too!";
+    println!("{}", long_string);
+}
+
+// x74
+
+
 
 10. 🌟🌟🌟 Sometimes there are just too many characters that need to be escaped or it's just much more convenient to write a string out as-is. This is where raw string literals come into play.
 

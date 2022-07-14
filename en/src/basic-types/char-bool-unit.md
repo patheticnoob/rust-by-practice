@@ -17,6 +17,21 @@ fn main() {
 } 
 ```
 
+fn main() {
+    let c1 = 'a';
+    assert_eq!(size_of_val(&c1),4); 
+
+    let c2 = '中';
+    assert_eq!(size_of_val(&c2),4); 
+
+    println!("Success!");
+} 
+
+values of c1 c2 to 4
+
+
+
+
 2. 🌟
 ```rust, editable
 
@@ -30,6 +45,20 @@ fn print_char(c : char) {
     println!("{}", c);
 }
 ```
+
+fn main() {
+    let c = '中';
+    print_char(c);
+} 
+
+fn print_char(c: char) {
+    println!("{}", c);
+}
+
+" to '
+
+
+
 
 ### Bool
 3. 🌟
@@ -46,6 +75,21 @@ fn main() {
 } 
 ```
 
+
+fn main() {
+    let _f: bool = false;
+    let t = false;
+    if !t {
+        println!("Success!");
+    }
+}
+
+
+t= false
+
+
+
+
 4. 🌟
 ```rust, editable
 
@@ -60,8 +104,22 @@ fn main() {
 ```
 
 
-### Unit type
-5. 🌟🌟
+fn main() {
+    let f = true;
+    let t = true || false;
+    assert_eq!(t, f);
+    println!("Success!");
+}
+
+
+AND to OR
+
+
+
+
+
+### Unit type            %%%%% BRB
+5. 🌟🌟            
 ```rust,editable
 
 // Make it work, don't modify `implicitly_ret_unit` !
